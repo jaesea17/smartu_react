@@ -7,7 +7,6 @@ import { UserContext } from "../../useContext";
 
 const Signin = () => {
     let[isAuth, setIsAuth] = useContext(UserContext);
-    console.log("isAuth:", isAuth)
     const [inputs, setInputs] = useState({email: "", password: ""});
     let history = useHistory();
     const handleSubmit = (e) => {
@@ -17,15 +16,10 @@ const Signin = () => {
         
         axios.post('http://localhost:3000/user/signIn', payload)
         .then((res)=>{
-            console.log("res:", res);
-            console.log("res.data:", res.data);
-            console.log("*****res.headers:");
             if(res.status === 200){
                 let token = res.data.auth_token
-                console.log(token);
                 localStorage.setItem("auth_token",token);
                 setIsAuth(true);
-                console.log("res.data:",res);
                 history.push("/expenses")
             }
         }).catch((err)=>{

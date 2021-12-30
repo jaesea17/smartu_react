@@ -10,7 +10,6 @@ const Expenses = () => {
     // declaring state
     const[display, setDisplay] = useState(false);
     const[expenseData, setExpenseData] = useState("");
-    console.log("expenseData", expenseData);
     const[details, setDetails] = useState({
         expenseType: '',
         amount: '',

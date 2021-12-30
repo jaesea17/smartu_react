@@ -1,1 +1,1 @@
-export const baseUrl = "https://smartu-api.herokuapp.com/";
+export const baseUrl = "https://smartu-api.herokuapp.com";

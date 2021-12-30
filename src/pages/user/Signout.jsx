@@ -4,7 +4,6 @@ import { UserContext } from "../../useContext";
 
 export const Signout = () => {
     let [isAuth, setIsAuth ] = useContext(UserContext);
-    console.log("isAuth:",isAuth)
     let history = useHistory();
     return(
         <>
