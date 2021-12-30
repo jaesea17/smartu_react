@@ -2,6 +2,7 @@ import axios from "axios";
 import { useState, useContext } from "react";
 import { Link, useHistory } from "react-router-dom";
 import Header from "../../components/Header";
+import { baseUrl } from "../../components/util/url";
 import { UserContext } from "../../useContext";
 //import { login } from "../../components/reusables/login";
 
@@ -14,7 +15,7 @@ const Signin = () => {
         const {email, password} = inputs;
         const payload = {"email": email, "password": password};
         
-        axios.post('http://localhost:3000/user/signIn', payload)
+        axios.post(`${baseUrl}/user/signIn`, payload)
         .then((res)=>{
             if(res.status === 200){
                 let token = res.data.auth_token

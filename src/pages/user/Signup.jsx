@@ -2,6 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import { Link, useHistory } from "react-router-dom";
 import Header from "../../components/Header";
+import { baseUrl } from "../../components/util/url";
 
 const Signup = () => {
     const [inputs, setInputs] = useState({firstName: "", lastName: "",email: "",password: ""});
@@ -14,7 +15,7 @@ const Signup = () => {
             "firstName": firstName, "lastName": lastName,
             "email": email, "password": password        
         }
-        axios.post('http://localhost:3000/user/signUp', payload)
+        axios.post(`${baseUrl}/user/signUp`, payload)
         .then((res)=>{
             if(res.status === 200){
                 history.push("/signin");
