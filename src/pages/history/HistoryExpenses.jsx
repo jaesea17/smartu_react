@@ -2,13 +2,12 @@ import axios from "axios";
 import { useEffect } from "react";
 import { useState } from "react"
 import DisplayHistExpenses from "../../components/DisplayHistExpenses";
-
+import { baseUrl } from "../../components/util/url";
 
 const HistoryExpenses = () => {
 
     //declaring states
     const[data, setData] = useState("");
-    const[entryIds, setEntryIds] = useState([])
 
     const retrieveData = () => {
         let authToken = localStorage.getItem("auth_token");
@@ -18,7 +17,7 @@ const HistoryExpenses = () => {
                 Authorization: authToken
             }
         });
-        authAxios.get('http://localhost:3000/entries/expenses')
+        authAxios.get(`${baseUrl}/entries/expenses`)
         .then((res) => {
             let received = res.data;
             setData(received);
@@ -36,7 +35,7 @@ const HistoryExpenses = () => {
 
     return(
         <>
-            <DisplayHistExpenses data={{data, setData}} entryIds={entryIds}
+            <DisplayHistExpenses data={{data, setData}} 
             retrieveData={retrieveData}/>
         </>
     )

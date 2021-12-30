@@ -12,7 +12,7 @@ export const Signout = () => {
 
             <button onClick = { () => {
                 setIsAuth(false);
-                localStorage.removeItem("auth_token");
+                //localStorage.removeItem("auth_token");
                 history.push("/signin")
             }}>sign-out</button>
         </>

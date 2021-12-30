@@ -1,16 +1,17 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { baseUrl } from "./util/url";
 
 const ExRows = (props) => {
     //received from parent
     let receive = props.single;
     let receivedCheck = props.isChecked.isChecked;
-    let receivedSetCheck = props.isChecked.setIsChecked;
     const[expenseType, setExpenseType] = useState(receive.expense_type)
     const[amount, setAmount] = useState(receive.amount);
     const[date, setDate] = useState(receive.date);
     const{keyId,setKeyId} = props.keyId;
-    const{entryIds} = props;
+    const{childCheck, setChildCheck} = props.childCheck;
+
     
     const[unEditable, setUnEditable] = useState(true);
     const[isChecked, setIsChecked] = useState(false);
@@ -34,7 +35,7 @@ const ExRows = (props) => {
                 Authorization: authToken
             }
         });
-        authAxios.patch(`http://localhost:3000/entries/expenses/${receive.e_id}`,payload)
+        authAxios.patch(`${baseUrl}/entries/expenses/${receive.e_id}`,payload)
         .then((res) => {
             if(res.status === 200){
                 
@@ -61,6 +62,7 @@ const ExRows = (props) => {
 
     const handleChange = (e) => {
         setIsChecked(!isChecked);
+        setChildCheck(!childCheck);
         if(isChecked === false){
             setKeyId({dKey: [...keyId.dKey, e.target.value]});     
         }else{
@@ -77,13 +79,6 @@ const ExRows = (props) => {
         setIsChecked(receivedCheck)
     },[receivedCheck])
 
-    //setting the checked state of parent to that of child state
-    // useEffect( () => {
-    //     console.log("ischecked///", isChecked)
-    //     if(isChecked === true){
-    //         receivedSetCheck(isChecked)
-    //     }else{receivedSetCheck(false)}
-    // },[isChecked])
 
     return(
         <>  

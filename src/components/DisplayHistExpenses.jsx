@@ -1,33 +1,18 @@
 import ExRows from "./ExRows";
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import axios from "axios";
-
+import { baseUrl } from "./util/url";
 
 const DisplayHistExpenses = (props) => {
-    const[ret, setRet] = useState(false);
+    const[childCheck, setChildCheck] = useState(false);
     const[isChecked, setIsChecked] = useState(false);
     let[keyId, setKeyId] = useState({dKey: []});
     const{data, setData} = props.data;
     let array2 = [];
-
-    const{entryIds} = props;
     const {retrieveData} = props;
-
+    
     const handleChange = (e) => {
         setIsChecked(prevChecked => !prevChecked);
-        if(isChecked){
-            console.log("ran")
-            data.forEach((single) => {
-                array2.push(single.e_id);
-            })
-           setKeyId({dKey: [...keyId.dKey, ...array2]})
-        }else{
-            keyId.dKey.splice(0,keyId.dKey.length);
-            setKeyId({dKey: keyId.dKey})
-            // array2.splice(0,array2.length);
-            // keyId = {dkey:array2};
-        }
-        console.log("keyId onchange:", keyId.dKey);
     }
 
     const handleDeleteAll = () => {
@@ -39,7 +24,7 @@ const DisplayHistExpenses = (props) => {
                     Authorization: authToken
                 }
             });
-            authAxios.delete('http://localhost:3000/entries/expenses/all')
+            authAxios.delete(`${baseUrl}/entries/expenses/all`)
             .then((res) => {
                 if(res.status === 200){
                     setData("");
@@ -58,14 +43,14 @@ const DisplayHistExpenses = (props) => {
         const payload ={
             data: {"keyId": keyId.dKey}
         };
-        console.log("payload:", payload);
+        //creating an instance of axios that carries the Authorization in headers
         const authAxios = axios.create({
             headers:{
                 Authorization: authToken
             }
         });
 
-         authAxios.delete('http://localhost:3000/entries/expenses/',payload)
+         authAxios.delete(`${baseUrl}/entries/expenses/`,payload)
             .then((res) => {
                 if(res.status === 200){
                     retrieveData();
@@ -76,6 +61,14 @@ const DisplayHistExpenses = (props) => {
                 if(err) return console.log(err);
             })             
     }
+
+
+    useEffect(() => {
+        if(keyId.dKey.length === data.length){
+            setIsChecked(true);
+        }else{setIsChecked(false);}
+    },[childCheck])
+
 
     if(data.length > 0){  
         return(
@@ -89,7 +82,7 @@ const DisplayHistExpenses = (props) => {
                     return(
                         <div key={single.e_id} >
                             <ExRows key={single.e_id} isChecked={{isChecked, setIsChecked}} single={single}
-                            keyId={{keyId, setKeyId}} entryIds={entryIds}/>
+                            keyId={{keyId, setKeyId}}  childCheck={{childCheck, setChildCheck}}/>
                         </div>
                     )
                 })}

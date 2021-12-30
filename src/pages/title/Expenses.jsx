@@ -3,11 +3,14 @@ import { useState } from "react";
 import Displayexpenses from "../../components/Displayexpenses";
 import Header from "../../components/Header";
 import { Link } from "react-router-dom";
+import Exit from "../../components/Exit";
+import { baseUrl } from "../../components/util/url";
 
 const Expenses = () => {
     // declaring state
     const[display, setDisplay] = useState(false);
     const[expenseData, setExpenseData] = useState("");
+    console.log("expenseData", expenseData);
     const[details, setDetails] = useState({
         expenseType: '',
         amount: '',
@@ -31,7 +34,6 @@ const Expenses = () => {
             'amount': amount,
             'date': date
         }
-        console.log('payload:',payload);
 
         //adding token to an instance of axios
         const authAxios = axios.create({
@@ -39,10 +41,8 @@ const Expenses = () => {
                 Authorization: authToken
             }
         });
-
-        authAxios.post('http://localhost:3000/entries/expenses',payload)
+        authAxios.post(`${baseUrl}/entries/expenses`,payload)
         .then((res) => {
-            console.log("the data:", res.data);
             if(res.data[0] === undefined){
                 received = res.data;
             }else{received = res.data[0]}
@@ -58,6 +58,7 @@ const Expenses = () => {
     return(
         <>
             <Header />
+            <Exit />
             <div style={{display: "inline-block"}}>
                 <form onSubmit={handleSubmit}>
                     Expense type:<br></br>   

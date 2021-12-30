@@ -3,7 +3,6 @@ const Displayexpenses = (props) => {
     let expenseType = props.expenseData.expense_type;
     
     if(props.expenseData.amount === undefined){
-        console.log("props:", props)
         return(
             <>
                  <h2>ENTRY DETAILS</h2>
