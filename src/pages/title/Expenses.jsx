@@ -53,7 +53,6 @@ const Expenses = () => {
         })
 
     }
-
     return(
         <>
             <Header />

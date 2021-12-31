@@ -20,7 +20,7 @@ const Home = () => {
     let [isAuth, setIsAuth] = useState(false);
     useEffect(()=>{
         auth()
-        setIsAuth(auth)
+       // setIsAuth(auth)
     },[isAuth]);
 
     return(
@@ -63,9 +63,12 @@ const Home = () => {
                 <Expenses />
             </Route>
 
-            <Route path='/history/expenses'>
+            {/* <Route path='/history/expenses'>
                 <HistoryExpenses />
-            </Route>
+            </Route> */}
+
+            <ProtectedRoute path='/history/expenses' auth={isAuth} component={HistoryExpenses}/> 
+    
 
             <Route >
                 <Error />
