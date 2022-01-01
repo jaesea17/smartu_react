@@ -64,9 +64,14 @@ const DisplayHistExpenses = (props) => {
 
 
     useEffect(() => {
+        console.log('keyid length', keyId.dKey.length);
+        console.log('data length', data.length);
         if(keyId.dKey.length === data.length){
+            console.log('entered true');
             setIsChecked(true);
-        }else{setIsChecked(false);}
+            keyId.dKey.splice(0, keyId.dKey.length);
+        }else{console.log('entered false');
+            setIsChecked(false);}
     },[childCheck])
 
 
