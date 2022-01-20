@@ -10,8 +10,9 @@ export const Signout = () => {
             <h2> are you sure you want to exit the site?!</h2>
 
             <button onClick = { () => {
+                console.log("isAuth", isAuth);
                 setIsAuth(false);
-                //localStorage.removeItem("auth_token");
+                localStorage.removeItem("auth_token");
                 history.push("/signin")
             }}>sign-out</button>
         </>

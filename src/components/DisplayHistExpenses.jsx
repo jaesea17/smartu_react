@@ -8,7 +8,7 @@ const DisplayHistExpenses = (props) => {
     const[isChecked, setIsChecked] = useState(false);
     let[keyId, setKeyId] = useState({dKey: []});
     const{data, setData} = props.data;
-    let array2 = [];
+
     const {retrieveData} = props;
     
     const handleChange = (e) => {
@@ -43,6 +43,7 @@ const DisplayHistExpenses = (props) => {
         const payload ={
             data: {"keyId": keyId.dKey}
         };
+
         //creating an instance of axios that carries the Authorization in headers
         const authAxios = axios.create({
             headers:{
@@ -62,16 +63,17 @@ const DisplayHistExpenses = (props) => {
             })             
     }
 
-
+    //setting parent "checked" to true if all the children are true 
     useEffect(() => {
-        console.log('keyid length', keyId.dKey.length);
-        console.log('data length', data.length);
-        if(keyId.dKey.length === data.length){
-            console.log('entered true');
-            setIsChecked(true);
-            keyId.dKey.splice(0, keyId.dKey.length);
-        }else{console.log('entered false');
-            setIsChecked(false);}
+        if(data.length > 0){
+            if(keyId.dKey.length === data.length){
+                setIsChecked(prevChecked => !prevChecked);
+                keyId.dKey.splice(0, keyId.dKey.length);
+            }else{
+                setIsChecked(false);
+            }
+        }
+        
     },[childCheck])
 
 

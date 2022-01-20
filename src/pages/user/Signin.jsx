@@ -21,6 +21,7 @@ const Signin = () => {
                 let token = res.data.auth_token
                 localStorage.setItem("auth_token",token);
                 setIsAuth(true);
+                console.log("isAuth", isAuth);
                 history.push("/expenses")
             }
         }).catch((err)=>{
