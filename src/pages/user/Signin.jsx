@@ -58,7 +58,7 @@ const Signin = () => {
                         />
                     </label>
                     <p></p>
-                    <input type="submit" />
+                    <input type="submit" value="Submit"/>
                 </form>
                 
                 <p><Link to=""> Forgot Password? </Link></p>

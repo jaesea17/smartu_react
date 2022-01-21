@@ -17,7 +17,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "react-scripts test --detectOpenHandles",
     "eject": "react-scripts eject",
     "cypress": "cypress open --project ./e2e --config baseurl='http://localhost:3002' chromewebSecurity=false"
   },
