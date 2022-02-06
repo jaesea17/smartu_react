@@ -64,11 +64,11 @@ const ExRows = (props) => {
         setIsChecked(!isChecked);
         setChildCheck(!childCheck);
         if(isChecked === false){
-            setKeyId({dKey: [...keyId.dKey, e.target.value]});     
+            setKeyId({ dKey: [...keyId.dKey, e.target.value] });     
         }else{
             const index = keyId.dKey.indexOf(e.target.value);
             keyId.dKey.splice(index, 1)
-            setKeyId({dKey: keyId.dKey})
+            setKeyId({ dKey: keyId.dKey })
         }
 
     }
@@ -77,7 +77,7 @@ const ExRows = (props) => {
     //setting the checked state of child to that of parent state
     useEffect( () => {
         setIsChecked(receivedCheck)
-    },[receivedCheck])
+    }, [receivedCheck])
 
 
     return(

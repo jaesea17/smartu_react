@@ -3,7 +3,7 @@ import { useHistory } from "react-router";
 import { UserContext } from "../../useContext";
 
 export const Signout = () => {
-    let [isAuth, setIsAuth ] = useContext(UserContext);
+    let [ isAuth, setIsAuth ] = useContext(UserContext);
     let history = useHistory();
     return(
         <>

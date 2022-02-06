@@ -40,7 +40,7 @@ const DisplayHistExpenses = (props) => {
     
     const handleDelete = (e) => {
         let authToken = localStorage.getItem("auth_token");
-        const payload ={
+        const payload = {
             data: {"keyId": keyId.dKey}
         };
 

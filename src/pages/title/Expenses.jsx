@@ -40,7 +40,7 @@ const Expenses = () => {
                 Authorization: authToken
             }
         });
-        authAxios.post(`${baseUrl}/entries/expenses`,payload)
+        authAxios.post(`${baseUrl}/entries/expenses`, payload)
         .then((res) => {
             if(res.data[0] === undefined){
                 received = res.data;

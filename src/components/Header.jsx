@@ -1,6 +1,6 @@
 import { useHistory } from "react-router";
 
-const Header = () =>{
+const Header = () => {
     let history = useHistory();
     return(
         <div style={

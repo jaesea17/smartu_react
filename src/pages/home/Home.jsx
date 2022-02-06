@@ -18,10 +18,10 @@ import HistoryExpenses from "../history/HistoryExpenses.jsx";
 
 const Home = () => {
     let [isAuth, setIsAuth] = useState(auth);
-    useEffect(()=>{
+    useEffect(() => {
         auth()
         setIsAuth(auth)
-    },[isAuth]);
+    }, [isAuth]);
 
     return(
 

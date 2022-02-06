@@ -5,7 +5,10 @@ import Header from "../../components/Header";
 import { baseUrl } from "../../components/util/url";
 
 const Signup = () => {
-    const [inputs, setInputs] = useState({firstName: "", lastName: "",email: "",password: ""});
+    const [inputs, setInputs] = useState({
+        firstName: "", lastName: "", 
+        email: "", password: ""
+    });
     let history = useHistory();
 
     const handleSubmit = (e) => {
@@ -20,7 +23,7 @@ const Signup = () => {
             if(res.status === 200){
                 history.push("/signin");
             } 
-        }).catch((err)=>{
+        }).catch((err) => {
             console.log(err);
         })
     }
@@ -28,7 +31,7 @@ const Signup = () => {
     const handleChange = (e) => {
         const name = e.target.name;
         const value = e.target.value;
-        setInputs({...inputs, [name]: value})
+        setInputs({ ...inputs, [name]: value })
     }
 
     return(

@@ -79,14 +79,14 @@ test("has valid input, and handlesSubmit function is called", async () => {
     const button = screen.getByRole("button");
     
     await act( async () => {
-        fireEvent.change(firstnameInput,{target: {value: firstName}});
-        fireEvent.change(lastnameInput,{target: {value: lastName}});
-        fireEvent.change(emailInput,{target: {value: firstName}});
-        fireEvent.change(passwordInput,{target: {value: lastName}});
+        fireEvent.change(firstnameInput, {target: {value: firstName}});
+        fireEvent.change(lastnameInput, {target: {value: lastName}});
+        fireEvent.change(emailInput, {target: {value: firstName}});
+        fireEvent.change(passwordInput, {target: {value: lastName}});
     })
 
     await act( async () => {
-        fireEvent.click(button,handleSubmit())
+        fireEvent.click(button, handleSubmit())
     })
 
     expect(handleSubmit).toHaveBeenCalled();
